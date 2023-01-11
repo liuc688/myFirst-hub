@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>习近平的讲话，充分体现了我们党不忘初心，牢记使命的原则</div>
+  <script>
+    var div = document.querySelector("div");
+    // str 是一个文本，里面可能含有一些敏感词
+    var str = '习近平的讲话，充分体现了我们党不忘初心，牢记使命的原则'
+    var newHtml = str;  // 复制str，生成一个 str 的副本，后期，我们直接在副本上进行修改
+    var sign = ["习近平","不忘初心"];  // 敏感词数组
+    sign.forEach(item=>{  // 敏感词数组遍历循环
+      let regSign = new RegExp(item,'g');  // 这里的 g 表示全局替换，模式 regSign 通过 RegExp 构造函数创建的
+      /*
+        为简化子字符串替换操作，ECMAScript 提供了replace()方法。这个方法接收两个参数，
+        第一个参数可以是一个RegExp 对象或一个字符串（这个字符串不会转换为正则表达式），
+        第二个参数可以是一个字符串或一个函数。
+      */
+      newHtml = newHtml.replace(regSign,"<span style='color:red'>"+item+"</span>")
+      console.log('newHtml',newHtml)
+    })
+    console.log('这里是newHtml',newHtml);
+    div.innerHTML = newHtml
+  </script>
+</body>
+</html>

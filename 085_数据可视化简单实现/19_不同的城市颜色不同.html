@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1. 引入 echarts.js 文件 -->
+  <script src="./lib/echarts.min.js"></script>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="./lib/axios.min.js"></script>
+</head>
+<body>
+  <div style="width:600px;height:400px"></div>
+
+  <script>
+    // 1.Echarts 最基本的代码结构
+    // 2.准备中国地图的矢量数据
+    // 3.使用 ajax 获取矢量地图数据
+    // 4.在 ajax 的回调函数中注册地图矢量数据 echarts.registerMap('chinaMap',矢量地图数据)
+    // 5.配置 geo 的 type 为 'map'，map 为 'chinaMap'
+    var mCharts = echarts.init(document.querySelector('div'))
+    var airData = [
+        { name: '北京', value: 39.92 },
+        { name: '天津', value: 39.13 },
+        { name: '上海', value: 31.22 },
+        { name: '重庆', value: 66 },
+        { name: '河北', value: 147 },
+        { name: '河南', value: 113 },
+        { name: '云南', value: 25.04 },
+        { name: '辽宁', value: 50 },
+        { name: '黑龙江', value: 114 },
+        { name: '湖南', value: 175 },
+        { name: '安徽', value: 117 },
+        { name: '山东', value: 92 },
+        { name: '新疆', value: 84 },
+        { name: '江苏', value: 67 },
+        { name: '浙江', value: 84 },
+        { name: '江西', value: 96 },
+        { name: '湖北', value: 273 },
+        { name: '广西', value: 59 },
+        { name: '甘肃', value: 99 },
+        { name: '山西', value: 39 },
+        { name: '内蒙古', value: 58 },
+        { name: '陕西', value: 61 },
+        { name: '吉林', value: 51 },
+        { name: '福建', value: 29 },
+        { name: '贵州', value: 71 },
+        { name: '广东', value: 38 },
+        { name: '青海', value: 57 },
+        { name: '西藏', value: 24 },
+        { name: '四川', value: 58 },
+        { name: '宁夏', value: 52 },
+        { name: '海南', value: 54 },
+        { name: '台湾', value: 88 },
+        { name: '香港', value: 66 },
+        { name: '澳门', value: 77 },
+        { name: '南海诸岛', value: 55 }
+    ]
+    $.get('./json/map/china.json',function(ret) {
+    // $.get('./json/map/shandong.json',function(ret) {
+      // ret 就是中国各个省份的矢量地图数据
+      console.log(ret)
+      echarts.registerMap('chinaMap',ret)
+      // 4. 准备配置项
+      var option = {
+        geo:{
+          type:'map',
+          map:'chinaMap',
+          roam:true,  // 设置允许缩放以及拖动的效果
+          label:{  // 名称显示
+            // show:true
+          },
+          zoom:1,  // 设置初始情况下缩放比例
+          // 设置地图中心点
+          // center:[87.617733,43.192818].
+        },
+        series: [
+          {
+            data: airData,
+            geoIndex: 0, // 将空气质量的数据和第0个geo配置关联在一起
+            type: 'map'
+          }
+        ],
+        visualMap: {
+          min: 0,
+          max: 300,
+          inRange: {
+            color: ['white', 'red']  // 控制颜色渐变的范围
+          },
+          calculable: true  // 出现滑块，可以进行筛选
+        }
+      }
+      // 5. 将配置项设置给 echarts 实例对象
+      mCharts.setOption(option)
+    })
+    // axios 来实现请求数据
+    // axios({
+    //   // 设置请求类型
+    //   method:'GET',
+    //   url:'./json/map/china.json'
+    // }).then(response => {
+    //   console.log(response);
+    // })
+  </script>
+</body>
+</html>

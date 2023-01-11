@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      html{
+        background-image: url('./imgs/8.jpg');
+        background-size: 1920px 1080px;
+        font-size: 15px;
+        overflow:hidden;
+        font-weight: 700;
+      }
+      .warn {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg,#14ffe9,#ffeb3b,#ff00e0);
+        /* 将背景色剪切到文字上 */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color:transparent;
+        /* 设置动画效果 */
+        animation: ff 3s linear infinite;
+        text-align: center;
+        font-size: 146px;
+        font-weight:700;
+        /* 设置字体为楷体 */
+        font-family: '楷体';
+        z-index: 999;
+      }
+      @keyframes ff {
+        to {filter: hue-rotate(360deg);}
+      }
+  </style>
+</head>
+<body>
+<div class="warn">
+  你忘记打卡了吗？<br />
+  快快打卡 
+</div>
+</body>
+</html>

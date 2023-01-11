@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            height: 100vh;
+            overflow: hidden;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+           /* background: linear-gradient(#0546f7,#ea00ff); */
+           background-image: url('./images/backiee-175139.jpg');
+           /* animation: move_bg 50s linear infinite; */
+           background-size:  100%;
+           /* background-color: #ccc; */
+        }
+
+        .bg1 {
+            position: absolute;
+            width: 1920px;
+            bottom: 0px;
+            height: 337px;
+            animation: move_bg 30s linear infinite;
+            z-index: 99;
+            background: url(images/bg1.png) no-repeat;
+            opacity: 0.87;
+        }
+
+        .bg2 {
+            position: absolute;
+            bottom: 0;
+            width: 1920px;
+            height: 492px;
+            background: url(images/bg2.png) no-repeat;
+            animation: move_bg 60s linear infinite;
+        }
+
+        .bear {
+            position: absolute;
+            bottom: 15px;
+            width: 200px;
+            height: 100px;
+            background: url(images/bear.png) no-repeat;
+            animation: bear 1s steps(8) infinite, move 100s forwards;
+            z-index: 1100;
+        }
+        /* .bear2 {
+            position: absolute;
+            bottom: 26px;
+            width: 200px;
+            height: 100px;
+            background: url(images/bear.png) no-repeat;
+            animation: bear 1s steps(8) infinite, move2 100s forwards;
+            z-index: 1100;
+        } */
+        .title {
+            width: 100%;
+            height: 90px;
+            /* background-color: pink; */
+            margin-top: 15vh;
+            font-size: 88px;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            letter-spacing: 20px;
+            text-shadow: 20px 20px 4px rgba(0, 0, 0, 0.8);
+            
+        }
+
+        @keyframes bear {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -1600px 0;
+            }
+        }
+
+        @keyframes move {
+            0% {
+                left: 0;
+            }
+            20% {
+                left: 100%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            30%{
+                left: 70%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            40%{
+                left: 30%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            50% {
+                left: 50%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            60%{
+                left: 70%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            80%{
+                left: 60%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            90%{
+                left: 40%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            100% {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        @keyframes move2 {
+            0% {
+                left: 15%;
+            }
+            20% {
+                left: 50%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            30%{
+                left: 40%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            40%{
+                left: 60%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            50% {
+                left: 70%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            60%{
+                left: 95%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            80%{
+                left: 60%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            90%{
+                left: 40%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+            100% {
+                left: 45%;
+                transform: translateX(-50%);
+            }
+        }
+        @keyframes move_bg {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100% 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">技术研发部年中汇报</div>
+    <div class="bear"></div>
+    <div class="bear2"></div>
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      /* 
+        添加了perspective,当子元素发生3d变化的时候,过渡效果会更加的立体,更加的真实
+        这里需要说明的一点是,perspective给的值越大,过渡时的形变越小,也就是立体感越差,
+        相反的,perspective给的值越小,过渡时的形变越大,立体感也就越强,其实这也很容易理解,因为perspective意思为视距
+      */
+      perspective:300px
+    }
+    img {
+      /* 转换成为块级元素 */
+      display: block;
+      /* 距离上边100像素,左右方向居中显示 */
+      margin: 100px auto;
+      width: 300px;
+      height: 200px;
+      /* transition是谁变化的给谁加 这里表示变化持续时间1s,从变化开始,到变化结束一共花费1s*/
+      transition: all 1s;
+    }
+    /* img:hover表示当鼠标放在img图片上,发生变化,也就是变化的触发条件 */
+    img:hover {
+      /* transform: rotateX(360deg);表示图片将会沿Y轴旋转360度  */
+      transform: rotateY(360deg);
+    }
+  </style>
+</head>
+<body>
+  <div><img src="./backiee-123162.jpg" alt=""></div>
+</body>
+</html>

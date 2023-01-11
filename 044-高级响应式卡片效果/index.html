@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="imgBx">
+        <!-- <img src="./backiee-128894.jpg" alt=""> -->
+        01
+      </div>
+      <div class="content">
+        <h2>淄博项目维护</h2>
+        <span>
+          前端缓存存储更改为redis存储、死链查询、敏感词查询
+        </span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="imgBx">
+        <!-- <img src="./backiee-129025.jpg" alt=""> -->
+        02
+      </div>
+      <div class="content">
+        <h2>聊城政务公开</h2>
+        <span>
+          聊城政务公开维护工作正在进行……
+        </span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="imgBx">
+        <!-- <img src="./backiee-129051.jpg" alt=""> -->
+        03
+      </div>
+      <div class="content">
+        <h2>融公开功能维护</h2>
+        <span>
+          第三方分享功能开发，督导任务测试，省资源库上报等
+        </span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="imgBx">
+        <!-- <img src="./backiee-129051.jpg" alt=""> -->
+        04
+      </div>
+      <div class="content">
+        <h2>聊云防返贫平台</h2>
+        <span>
+          添加删除站点接口，消息仅接收申请处置等
+        </span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="imgBx">
+        <!-- <img src="./backiee-129051.jpg" alt=""> -->
+        05
+      </div>
+      <div class="content">
+        <h2>哨兵工程</h2>
+        <span>
+          去甲方进行演示两次，图片提交bug调整，上传文件过大调整。
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var imgBxs = document.querySelectorAll('.imgBx');
+    // var containers = document.querySelectorAll('.container');
+    var contents = document.querySelectorAll('.content');
+    var cards = document.querySelectorAll('.card');
+
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function () {
+        contents[i].style.visibility = 'visible';
+        contents[i].style.opacity = '1';
+        contents[i].style.marginTop = '-20px';
+        contents[i].style.transitionDelay = '0.3s';
+        cards[i].style.height = '450px';
+
+      })
+    }
+  </script>
+</body>
+
+</html>

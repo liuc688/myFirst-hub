@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./animatesss.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            position: relative;
+            width: 200px;
+            height: 50px;
+            margin-top: 20px;
+            margin-left: 50px;
+            overflow: hidden;
+        }
+        .box .box_one {
+            position: absolute;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background-color: hotpink;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .box .box_two {
+            position: absolute;
+            right: -150px;
+            width: 200px;
+            height: 50px;
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box_one">
+
+        </div>
+        <div class="box_two">
+
+        </div>
+    </div>
+
+    <script>
+        var box_one = document.querySelector('.box .box_one');
+        var box_two = document.querySelector('.box .box_two');
+
+        box_one.addEventListener('mouseenter',function(){
+            animate(box_two,0);
+        });
+        box_one.addEventListener('mouseleave',function(){
+            animate(box_two,150);
+        });
+    </script>
+</body>
+</html>

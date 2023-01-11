@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr = [2,3,4,4,4,2,34,21,1,12,3,4,1];
+        // var arr2 = [];
+        // for(var i=0;i<arr.length;i++) {
+        //     for(var j=i+1;j<arr.length;j++) {
+        //         if(arr[i] == arr[j]) {
+        //            arr.splice(j,1);
+        //         //    j--;
+        //         }
+        //     }
+
+        // } 
+        // console.log(arr);
+
+
+        //先定义一个数组
+        // var arr = [1, 2, 2, 2, 2, 3, 4]
+        // //双重for循环
+        // for (i = 0; i < arr.length; i++) {
+        //     for (j = i + 1; j < arr.length; j++) {                //如果数组中有两个数相等，这里用三位运算符
+        //         if (arr[i] === arr[j]) {   //在第j个元素开始删除，删除1个元素。splice方法,还可以对多个对象中的某个或某几个对象删除
+        //             arr.splice(j, 1);
+        //             j--;  //为了解决重复元素扎堆出现的问题,如:[1,2,2,2,2];
+        //         }
+        //     }
+        // }
+
+        // console.log(arr)
+
+        // var arr = [2,3,4,4,4,2,34,21,1,12,3,4,1];
+        // var arr2 = [];
+        // arr.forEach((e) => {
+        //     if(arr2.indexOf(e) == -1) {
+        //         arr2.push(e);
+        //     }
+        // })
+        // console.log(arr2);
+
+
+        // var arr = [2,3,4,4,4,2,34,21,1,12,3,4,1];
+        // var arr2 = [];
+        // arr.forEach((e) => {
+        //     if(!arr2.includes(e)) {
+        //         arr2.push(e)
+        //     }
+        // })
+        // console.log(arr2);
+        // var arr = [2,3,4,4,4,2,34,21,1,12,3,4,1];
+        // var arr2 = [... new Set(arr)];
+        // console.log(arr2);
+
+
+        // var arr = [2,3,4,4,4,2,34,21,1,12,3,4,1];
+        // var arr2 = arr.filter((e,i) => {
+        //     return arr.indexOf(e) == i;
+        //     // console.log(e,arr.indexOf(e)); 
+        // })
+
+        var arr = [2, 3, 4, 2, 34, 21, 1, 12, 3, 4, 1];
+        var arr2 = arr.reduce((pre, e) => {
+            pre.includes(e)?pre:pre.push(e);
+            return pre;
+        },[]);
+        console.log(arr2);
+        
+
+
+
+
+    </script>
+</body>
+
+</html>

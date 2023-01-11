@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>"></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ul {
+      height: 32px;
+      width: 80%;
+      border-bottom: 1px solid red;
+      margin: 100px auto 0;
+      background-color: #ccc;
+    }
+    ul li {
+      float: left;
+      list-style: none;
+      height: 32px;
+      line-height: 32px;
+      width: 20%;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .active {
+      background-color: deeppink;
+      color: #fff;
+    }
+    ol {
+      height: 320px;
+      width: 80%;
+      border: 1px solid #333;
+      margin: 0 auto;
+      background-color: #666;
+    }
+    ol li {
+      list-style: none;
+      line-height: 320px;
+      text-align: center;
+    }
+    ol li:nth-child(1) {
+      background-color: deeppink;
+    }
+    ol li:nth-child(2) {
+      background-color: pink;
+    }
+    ol li:nth-child(3) {
+      background-color: orange;
+    }
+    ol li:nth-child(4) {
+      background-color: skyblue;
+    }
+    ol li:nth-child(5) {
+      background-color: #b80be7;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li class="active">标签一</li>
+    <li>标签二</li>
+    <li>标签三</li>
+    <li>标签四</li>
+    <li>标签五</li>
+  </ul>
+  <ol>
+    <li>内容一</li>
+    <li>内容二</li>
+    <li>内容三</li>
+    <li>内容四</li>
+    <li>内容五</li>
+  </ol>
+
+  <script>
+    $(function() {
+      // 下面两行代码表示在初始化的时候，第一个li显示，其余的li隐藏，表示默认情况下，我们显示第一个
+      $("ol li").hide();
+      $("ol li").eq(0).show();
+      // 1.鼠标经过左侧的小li
+      // $("ul li").click(function() {
+      //   // 2.得到当前小li的索引号
+      //   var index = $(this).index();
+      //   console.log(index);
+      //   // 3.让我们下侧的盒子相应索引号的图片（内容）显示出来 这里利用的排它思想
+      //   $("ol li").eq(index).show();
+      //   // 让其余的图片（内容）（就是其他的兄弟）隐藏起来
+      //   $("ol li").eq(index).siblings().hide(); 
+      // })
+      let index = 0
+      setInterval(() => {
+        if(index >= 5) {
+          index = 0
+        }
+        $("ul li").eq(index).siblings().removeClass('active');
+        $("ul li").eq(index).addClass('active');
+        $("ol li").eq(index).show();
+        $("ol li").eq(index).siblings().hide(); 
+        index++;
+      },1000)
+    })
+  </script>
+</body>
+
+</html>

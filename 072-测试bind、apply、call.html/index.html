@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+    bind 是绑定 this 的指向，然后返回一个新的函数使用；
+    bind 和 call,apply的主要区别:
+      1.bind 是绑定 this 的指向，然后返回一个新函数，而 call 和 apply 是改变 this 的指向，并且立即执行这个新函数，新函数没有被保存；
+      自己的理解：我们要知道，绑定 this 的指向和改变 this 的指向，是两个不同的概念，因为改变 this 的指向是一次性的，
+      而绑定 this 的指向是永久的
+      2.bind 返回对应方法不会立即执行，调用时才会执行，而 apply 和 call 则是立即执行；
+    */
+    var _o = {}
+    function fn1(x) {
+      console.log(x);
+      console.log(this.n+'---------'+this.s);
+    }
+    var _obj = {
+      n:'我是老尚',
+      s:'一对一零基础课程'
+    }
+    /*
+    把 fn1 绑定成 _obj 的 this，赋值到 _o 对象的 fn1 属性上，并且这里的第二个参数，是函数 fn1 的形参 x； 
+    */ 
+    _o.fn1 = fn1.bind(_obj,666);
+    // console.log(_o.fn1);
+    // console.log(_o.fn1 == fn1);  // false；bind 方法是绑定 this 的指向，然后返回一个新函数，这时候的 _o.fn1 不再是 fn1 了
+    _o.fn1();  //注意：这里是我们调用了，它会执行；如果我们不调用，它是不会立即执行的（也就是说，它是不会主动执行的）
+    window.n = '我是荣垂星'
+    function fn2(){
+      console.log('...',this);
+      console.log(this.n);
+    }
+    var _obj2 = {n:'xx123'}
+    fn2.call(_obj2);  // xx123； call 方法改变 this 执行，并且立即执行
+    console.log("-----------");
+    fn2();
+  </script>
+</body>
+</html>

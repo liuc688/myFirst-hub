@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./jquery.min.js">
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <input type="checkbox" />选项一
+    </div>
+    <div>
+      <input type="checkbox" />选项二
+    </div>
+    <div>
+      <input type="checkbox" />选项三
+    </div>
+  </div>
+  <div>--------------------------------------------------------------------------</div>
+  <div class="containers">
+    <div>
+      <input type="checkbox" />选项一
+    </div>
+    <div>
+      <input type="checkbox" />选项二
+    </div>
+    <div>
+      <input type="checkbox" />选项三
+    </div>
+  </div>
+
+  <p>
+    <button onclick="reset()">重置</button>
+  </p>
+
+  <script>
+    function reset() {
+      for(let index=0;index<document.querySelectorAll('.container input').length;index++){
+        if(index==0){
+          document.querySelectorAll('.container input')[0].checked = true;
+        }else{
+          document.querySelectorAll('.container input')[index].checked = false;
+        }
+      }
+      for(let index=0;index<document.querySelectorAll('.containers input').length;index++){
+        if(index==0){
+          document.querySelectorAll('.containers input')[0].checked = true;
+        }else{
+          document.querySelectorAll('.containers input')[index].checked = false;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/jquery.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+    }
+    .pack {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    .box {
+      width: 500px;
+      height: 60px;
+      line-height: 60px;
+      background-color: pink;
+    }
+
+    .main {
+      padding: 25px;
+      position: relative;
+      width: 500px;
+      height: 800px;
+      background-color: skyblue;
+      overflow: hidden;
+    }
+
+    .box ul li,.main ul li {
+      float: left;
+      text-align: center;
+    }
+    .box ul li {
+      width: 25%;
+      border-right: 1px solid deeppink;
+      cursor: pointer;
+    }
+    .main ul {
+      position: absolute;
+      left:0;
+      top:0;
+      width: 500%;
+    }
+    .main ul li {
+      width: 500px;
+      height: 800px;
+    }
+  </style>
+</head>
+<body>
+  <div class="pack">
+
+  
+  <div class="box">
+    <ul>
+      <li>标签一</li>
+      <li>标签二</li>
+      <li>标签三</li>
+      <li>标签四</li>
+    </ul>
+  </div>
+  <div class="main">
+    <ul>
+      <li style="display: block;">内容一</li>
+      <li>内容二</li>
+      <li>内容三</li>
+      <li>内容四</li>
+    </ul>
+  </div>
+</div>
+
+  <script>
+    $(function(){
+      let w = $('.main').width();
+      let w2 = $('.main').innerWidth();
+      let w3 = $('.main').outerWidth();
+      let w4 = $('.main').outerWidth(true);
+      console.log('宽度',w);
+      console.log('宽度2',w2);
+      console.log('宽度3',w3);
+      console.log('宽度4',w4);
+      $('.box ul li').click(function(){
+        let index = $(this).index();
+        console.log('index',index);
+        $(".main ul").stop().animate({
+          left:-index*500 + 'px'
+        },500)
+      })
+    })
+  </script>
+</body>
+</html>

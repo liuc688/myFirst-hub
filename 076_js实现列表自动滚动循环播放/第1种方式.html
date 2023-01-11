@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 400px;
+      height: 400px;
+      background: pink;
+      margin: 100px auto;
+      overflow: hidden;
+    }
+    .review_box {
+      width: 400px;
+      height: 200px;
+      overflow: hidden;
+      margin: 50px auto 0;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      cursor: pointer;
+    }
+    li {
+      list-style: none;
+    }
+    #comment1 li,
+    #comment2 li
+    {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      margin: 5px 0;
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="review_box" onmouseover="rollStop()" onmouseout="rollStart(60)">
+      <ul id="comment1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+      <ul id="comment2"></ul>
+    </div>
+  </div>
+  <script>
+    var timer = null;
+    // roll 方法是一上来就执行的方法
+    function roll(t) {
+      // ul1 就是 id 为 comment1 的 ul 标签
+      var ul1 = document.querySelector("#comment1");
+      // ul2 就是 id 为 comment2 的 ul 标签
+      var ul2 = document.querySelector("#comment2");
+      // ulbox 是 div 标签
+      var ulbox = document.querySelector(".review_box");
+      // ul2 标签中的内容（innerHTML） 和 ul1 标签中的内容（innerHTML）一样
+      /* 
+      思考一下，为什么这里要创建一个里面的内容完全和 ul1 一样的 ul2 呢？
+      解答：其实是这样的，为了防止滚动高度突然变零，会造成突然性的跳转，这里创建一个 ul2，滚动效果会更加的丝滑
+      */
+      ul2.innerHTML = ul1.innerHTML;
+      // scrollTop 表示滚动的高度，这里表示 ulbox 盒子最开始的时候滚动的高度为 0，也就是没有滚动
+      ulbox.scrollTop = 0;
+      // 调用 rollStart() 方法
+      this.rollStart(t);
+    };
+    // rollStart 方法
+    function rollStart(t) {
+      // ul1 就是 id 为 comment1 的 ul 标签
+      var ul1 = document.querySelector("#comment1");
+      // ul2 就是 id 为 comment2 的 ul 标签
+      var ul2 = document.querySelector("#comment2");
+      // ulbox 是 div 标签
+      var ulbox = document.querySelector(".review_box");
+      // 调用 rollStop() 方法，新建定时器之前，一定要先清除一下定时器
+      this.rollStop();
+      // 执行定时器
+      this.timer = setInterval(()=>{
+        // 当滚动高度大于等于列表内容高度时恢复为 0，这里的 ul1.scrollHeight 的值是固定的，为 220px
+        console.log('----',ulbox.scrollHeight,ulbox.scrollTop)
+        if (ulbox.scrollTop >= ul1.scrollHeight) {
+          ulbox.scrollTop = 0;
+        } else {
+          // 当滚动的高度小于列表内容高度的时候，ulbox 盒子滚动的高度每隔 t 毫秒时，+1
+          ulbox.scrollTop++;
+        }
+      }, t);
+    };
+    // rollStop() 方法 -> 清除定时器，停止滚动
+    function rollStop(){
+      clearInterval(this.timer);
+    };
+    this.roll(60);
+  </script>
+</body>
+</html>

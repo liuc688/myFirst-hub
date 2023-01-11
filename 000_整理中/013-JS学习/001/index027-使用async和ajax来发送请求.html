@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sendAJAX(url) {
+            return new Promise((resolve, reject) => {
+                // 创建对象
+                const x = new XMLHttpRequest();
+                x.open('GET', url);
+                x.send();
+                x.onreadystatechange = function () {
+
+                    if (x.readyState === 4) {
+                        if (x.status >= 200 && x.status < 300) {
+                            resolve(x.response);
+                        } else {
+                            reject(x.status);
+                        }
+                    }
+                }
+            })
+        }
+        //   sendAJAX('https://api.apiopen.top/getJoke').then(value=>{
+        //       console.log(value);
+
+        //   },reason=>{
+
+        //   })
+
+        async function main() {
+            let result = await sendAJAX('https://api.apiopen.top/getJoke');
+            let tianqi = await sendAJAX('https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5&fenlei=256&rsv_pq=d99a4c9c0001815f&rsv_t=9a96OvIxzqXVMoz3b6w75pQlLpXx6BsBm4%2FQlflcydoXWAZX2AhEDKWw2vE&rqlang=cn&rsv_enter=1&rsv_dl=ts_0&rsv_sug3=5&rsv_sug1=3&rsv_sug7=100&rsv_sug2=0&rsv_btype=i&prefixsug=%25E5%25A4%25A9%25E6%25B0%2594&rsp=0&inputT=2106&rsv_sug4=2106');
+            console.log(tianqi);
+        }
+        main();
+
+    </script>
+
+</body>
+
+</html>

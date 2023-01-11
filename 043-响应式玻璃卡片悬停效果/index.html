@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="imgBx">
+        <img src="./design.png" alt="">
+      </div>
+      <div class="content">
+        <div>
+          <h3>融公开v3.1.1</h3>
+          <p>
+            前端页面接口对接，督导任务开发，主动公开第三方分享功能开发，模板管理功能升级，前端页面模版制作 
+          </p>
+          <a href="#">read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="imgBx">
+        <img src="./design1.png" alt="">
+      </div>
+      <div class="content">
+        <div>
+          <h3>聊城站群项目开发</h3>
+          <p>
+            站群委办局模板开发，专题模板页面开发
+          </p>
+          <a href="#">read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="imgBx">
+        <img src="./design2.png" alt="">
+      </div>
+      <div class="content">
+        <div>
+          <h3>新增需求处理</h3>
+          <p>
+            语料管理开发，智能机器人后台前端接口和前台前端接口。
+          </p>
+          <a href="#">read More</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="imgBx">
+        <img src="./design3.png" alt="">
+      </div>
+      <div class="content">
+        <div>
+          <h3>投标演示</h3>
+          <p>
+            前端页面开发，后端任务管理模块开发，前端对接接口开发
+          </p>
+          <a href="#">read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var imgBxs = document.querySelectorAll('.imgBx');
+    for(var i=0;i<imgBxs.length;i++) {
+      imgBxs[i].addEventListener('click',function(){
+        this.style.height = '150px';
+        this.style.width = '150px';
+        this.style.left = '-75px';
+        this.style.top = 'calc(50% - 75px)';
+      })
+    }
+  </script>
+</body>
+</html>

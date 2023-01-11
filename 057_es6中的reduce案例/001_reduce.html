@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let sum = [15, 16, 17, 18, 19].reduce( (prev, curr, currentIndex, array) => prev + (curr>17?1:0), 0)
+    // console.log('数组中大于17的数个数为:',sum);
+    // const getMax = (a,b)=>Math.max(a,b);
+    // const num_Max = [1,5,0,100].reduce(getMax,50);
+    // const arr = [1,5,0,100];
+    // const num_Max2 = Math.max(...arr);
+    // console.log(num_Max2);
+
+    //按属性对Object进行分类
+    let people = [
+      { name: 'Alice', age: 21 },
+      { name: 'Max', age: 20 },
+      { name: 'Jane', age: 20 }
+    ];
+    function groupBy(objectArray, property) {
+      //acc是上一次返回的值,obj是当前正在处理的值;groupBy(people, 'age')该代码可以清晰的看到,objectArray就是people数组,而property是age
+      //acc一初始的时候就是一个对象,
+      return objectArray.reduce((acc, obj) => {
+        let key = obj[property]
+        //如果acc数组中不包含(没有)这个key也就是age值,就用这个key(age值)为名创建一个新数组
+        if (!acc[key]) {
+          acc[key] = []
+        }
+        //这句代码为什么没有else,代码不管怎么执行,都要执行这句代码向名字为acc[key]的数组中添加元素
+        acc[key].push(obj)
+        //最后返回acc
+        return acc
+      }, {})
+    }
+    let groupedPeople = groupBy(people, 'age')
+    console.log('-----',groupedPeople);
+    //使用扩展运算符和initialValue(初始化的值)绑定包含在数组对象中的数组
+
+    //数组去重..
+    let myArray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd']
+    let myArrayWithNoDuplicates = myArray.reduce(function (previousValue, currentValue) {
+      if(previousValue.indexOf(currentValue) === -1)
+        previousValue.push(currentValue)
+      return previousValue
+    }, [])
+
+    console.log(myArrayWithNoDuplicates)
+    //使用reduce()替代.filter()和.map()
+    const numbers = [-5, 6, 2, 0];
+    const doubledPositiveNumbers = numbers.reduce((previousValue, currentValue) => {
+      if (currentValue > 0) {
+        const doubled = currentValue * 2;
+        previousValue.push(doubled);
+      }
+      return previousValue;
+    }, []);
+    console.log(doubledPositiveNumbers); // [12, 4]
+
+    //按顺序执行Promise
+    //这里的arr就是[p1,p2,p3,p4],input为10
+    function runPromiseInSequence(arr, input) {
+      return arr.reduce(
+        (promiseChain, currentFunction) => promiseChain.then(currentFunction),
+        Promise.resolve(input)
+      )
+    }
+    // promise function 1
+    function p1(a) {
+      return new Promise((resolve, reject) => {
+        resolve(a * 5)
+      })
+    }
+    // promise function 2
+    function p2(a) {
+      return new Promise((resolve, reject) => {
+        resolve(a * 2)
+      })
+    }
+    // function 3  - will be wrapped in a resolved promise by .then()
+    function f3(a) {
+    return a * 3
+    }
+    // promise function 4
+    function p4(a) {
+      return new Promise((resolve, reject) => {
+        resolve(a * 4)
+      })
+    }
+    const promiseArr = [p1, p2, f3, p4]
+    runPromiseInSequence(promiseArr, 10)
+      .then(console.log)   // 1200
+
+    //使用函数组合实现管道
+    const double = x => x + x
+    const triple = x => 3 * x
+    const quadruple = x => 4 * x
+    // Function composition enabling pipe functionality
+    const pipe = (...functions) => initialValue => functions.reduce(
+        (acc, fn) => fn(acc),
+        initialValue
+    )
+    // Composed functions for multiplication of specific values
+    const multiply6 = pipe(double, triple)
+    const multiply9 = pipe(triple, triple)
+    const multiply16 = pipe(quadruple, quadruple)
+    const multiply24 = pipe(double, triple, quadruple)
+    // Usage
+    console.log(multiply6(6)) // 36
+    console.log(multiply9(9)) // 81
+    console.log(multiply16(16)) // 256
+    console.log(multiply24(10)); // 240
+  </script>
+</body>
+</html>

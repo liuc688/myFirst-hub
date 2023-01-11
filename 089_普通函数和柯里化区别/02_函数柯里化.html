@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const log = (date) => {
+      return (projectName) => {
+        return (message) => {
+          return `${date} ${projectName} ${message}`
+        }
+      }
+    }
+
+    /* 如果日期、项目名、信息都不同的情况下输出日志 */
+    // 日期为“2022-07-29”，项目名为“A项目”，输出日志
+    const logMsg1 = log('2022-07-29')('A项目')('接口报错');
+    console.log(logMsg1); // 打印 2022-07-29 A项目 接口报错
+    // 日期为“2022-07-29”，项目名为“A项目”，输出日志
+    const logMsg2 = log('2022-08-01')('B项目')('接口成功');
+    console.log(logMsg2); // 打印 2022-08-01 B项目 接口成功
+
+    /* 如果日期相同，项目名、信息不同的情况下输出日志 */
+    const sameDateLog = log('2022-07-29');
+    // 项目名为“A项目”，输出日志
+    const logMsg3 = sameDateLog('A项目')('接口异常');
+    console.log(logMsg3); // 打印 2022-07-29 B项目 接口异常
+    // 项目名为“B项目”，输出日志
+    const logMsg4 = sameDateLog('B项目')('接口超时');
+    console.log(logMsg4); // 打印 2022-07-29 B项目 接口超时
+
+    /* 如果日期、项目名相同，信息不同的情况下输出日志 */
+    const sameDateProjectNameLog = log('2022-07-29')('A项目');
+    // 输出日志
+    const logMsg5 = sameDateProjectNameLog('网络异常')
+    console.log(logMsg5); // 打印 2022-07-29 A项目 网络异常
+  </script>
+</body>
+
+</html>

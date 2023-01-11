@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    /* 外侧的盒子 */
+    .box {
+      width: 640px;
+      height: 360px;
+      margin: 100px auto 0px;
+      background-color: pink;
+      overflow: hidden;
+      position: relative;
+    }
+    /* ul 是包裹轮播图的盒子 */
+    .box ul {
+      width: 600%;
+      position: absolute;
+    }
+    /* 在这里 ul 中的 li 标签里面都是一个个的图片 */
+    .box ul li {
+      float: left;
+    }
+    .box ul li img {
+      width: 640px;
+      height: 360px;
+    }
+    .fl {
+      position: absolute;
+      top: 50%;
+    }
+    .fr {
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+    /* 左侧右侧和按钮 */
+    .fl,
+    .fr {
+      z-index: 999;
+      cursor: pointer;
+      display: none;
+      color: skyblue;
+      font-size: 32px;
+    }
+    /* 位于轮播图下方，是装小圆点的盒子 */
+    .box_two {
+      /* 这里我们让它的宽度和 box 盒子的宽度一样，这样更好看一点 */
+      width: 640px;
+      height: 50px;
+      margin: 0px auto;
+      overflow: hidden;
+      background: #aaa;
+    }
+    /* 装着小圆点的盒子 */
+    .box_two ol {
+      margin-left: 35px;
+      margin-top: 20px;
+    }
+    /* 小圆点 */
+    .box_two ol li {
+      display: inline-block;
+      float: left;
+      width: 10px;
+      height: 10px;
+      background-color: gray;
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    /* current 表示被触发时的样式效果 */
+    .current {
+      background-color: red !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="fl">
+      &lt;
+    </div>
+    <div class="fr">
+      &gt;
+    </div>
+    <ul>
+      <li><img src="./images/focus1.jpg" alt=""></li>
+      <li><img src="./images/focus2.jpg" alt=""></li>
+      <!-- <li><img src="./img/backiee-129025.jpg" alt=""></li> -->
+    </ul>
+
+  </div>
+  <div class="box_two">
+    <ol>
+
+    </ol>
+  </div>
+  <script src="./js/animate.js"></script>
+
+  <script>
+    // window 添加 load 事件，表示等页面全部加载完毕之后再执行 js
+    window.addEventListener('load', function () {
+      // 向左的箭头
+      var fl = document.querySelector('.fl');
+      // 向右的箭头
+      var fr = document.querySelector('.fr');
+      // 外侧盒子
+      var box = document.querySelector('.box');
+      // ul 才是真正滚动的区域
+      var ul = document.querySelector('.box ul');
+      // ol 表示下方小圆点区域
+      var ol = document.querySelector('ol')
+      // 鼠标移入 box 盒子上方后，触发的相应的方法
+      box.addEventListener('mouseenter', function () {
+        fl.style.display = 'block';
+        fr.style.display = 'block';
+        clearInterval(timmer);  // 清除定时器
+        timmer = null;  // 清除定时器标量
+      }) 
+      // 鼠标离开 box 盒子后，触发的相应的方法
+      box.addEventListener('mouseleave', function () {
+        fl.style.display = 'none';
+        fr.style.display = 'none';
+        timmer = setInterval(function () {  // 开启定时器 timmer
+          fr.click();
+        }, 2000);
+      })
+      // 创建小圆点，至于创建几个小圆点，完全是根据 ul 中的 li 的长度来的
+      for (var i = 0; i < ul.children.length; i++) {
+        var li = document.createElement('li');
+        li.setAttribute('index', i);
+        ol.append(li);
+        li.addEventListener('click', function () {
+          for (var i = 0; i < ol.children.length; i++) {
+            ol.children[i].className = '';
+          }
+          this.className = 'current';
+          var index = this.getAttribute('index');
+          console.log('索引号', index);
+          animate(ul,-(index*640))
+          // var space = index * 640;
+          // ul.style.left = -space + 'px';
+          num = index;
+          circle = index;
+        })
+      }
+      // ol 中的第一个 li 的样式 设置
+      ol.children[0].className = 'current';
+      // first_li 这个是克隆出来的，它克隆的是 ul 标签中的第一个，也就是 ul 标签中的第一个 li 标签的内容（这里是一张图片）
+      var first_li = ul.children[0].cloneNode(true);
+      // 将 first_li 插入到 ul 中，这里是向后插入的
+      ul.appendChild(first_li);
+      // 定义初始值为 0 的变量 num 及 circle
+      var num = 0;
+      var circle = 0;
+      // 向右箭头点击效果
+      fr.addEventListener("click", function () {
+        // 如果 num 的值等于了 ul 中 li 的个数 - 1，那么我们就回到最开始的时候（循环了一遍了）
+        if (num == ul.children.length - 1) {
+          ul.style.left = 0;
+          num = 0;
+        }
+        // num + 1
+        num++;
+        // mm 变量表示我们应该移动到的地方
+        var mm = num * 640;
+        // animate 就是实现缓动效果的方法，里面需要传两个参数，第一个参数表示，对谁做移动，第二个参数表示移动的距离
+        animate(ul,-mm)
+        // circle + 1
+        circle++;
+        // 如果 circle 的值等于了 ul 中 li 的个数 -1，那么我们就回到最开始的时候（循环完一遍了）
+        if (circle == ul.children.length - 1) {
+          // 将 circle 的值重新置为 0 
+          circle = 0;
+        }
+        // 执行 circleChange 方法，就是小圆点切换的方法
+        circleChange();
+      })
+      // 向左箭头的点击效果
+      fl.addEventListener("click", function () {
+        if (num == 0) {
+          ul.style.left = '-900px';
+          num = ul.children.length - 1;
+        }
+        num--;
+        var mm = num * 640;
+        // ul.style.left = -mm + 'px';
+        animate(ul,-mm)
+        circle--;
+        if (circle < 0) {
+          circle = ol.children.length - 1;
+        }
+        circleChange();
+      })
+      // 小圆点切换方法
+      function circleChange() {
+        for (var i = 0; i < ol.children.length; i++) {
+          ol.children[i].className = ''
+        }
+        ol.children[circle].className = 'current';
+      }
+      // 定时器 timmer，它放在最外侧，表示只要我们执行 js，就会触发该定时器
+      var timmer = setInterval(function () {
+        // 该定时器表示，每隔 2s 钟就模拟点击向右的箭头一次
+        fr.click();
+      }, 2000)
+    })
+  </script>
+</body>
+
+</html>

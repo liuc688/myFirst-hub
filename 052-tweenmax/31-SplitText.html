@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>TweenMax demon</title>
+  <script src="minified/jquery-1.10.1.min.js"></script>
+  <script src="minified/TweenMax.min.js"></script>
+  <script src="minified/SplitText.min.js"></script>
+  <!--www.tweenmax.com.cn演示实例-->
+  <!-- Demo styles -->
+  <style>
+    body {
+      font-family: Asap, Arial, Helvetica, sans-serif;
+      color: white;
+      background-image: linear-gradient(#7c19d8, #a91ab6);
+      margin: 5% 15% 0 15%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #demo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #quote {
+      font-size: 99px;
+      line-height: 50px;
+      color: #dedede;
+      font-weight: 700;
+      cursor: pointer;
+      text-shadow: 10px 10px 3px rgba(0, 0, 0, 0.8);
+      letter-spacing: 15px;
+    }
+
+    button {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #nav {
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="nav" style="display: none;">
+    <button id="chars">chars</button>
+    <button id="words">words</button>
+    <button id="lines">lines</button>
+    <button id="charsWordsLines">chars words and lines</button>
+    <button id="revert">revert</button>
+  </div>
+
+  <div id="demo">
+    <div id="quote">02-问题分析</div>
+  </div>
+  </div>
+
+  <script>
+    var $quote = $("#quote"),
+      mySplitText = new SplitText($quote, { type: "words" }),
+      splitTextTimeline = new TimelineLite();
+
+    TweenLite.set($quote, { perspective: 400 });
+
+    //kill any animations and set text back to its pre-split state
+    function kill() {
+      splitTextTimeline.clear().time(0);
+      mySplitText.revert();
+    }
+
+    $("#chars").click(function () {
+      kill();
+      mySplitText.split({ type: "chars, words" })
+      splitTextTimeline.staggerFrom(mySplitText.chars, 0.6, { scale: 4, autoAlpha: 0, rotationX: -180, transformOrigin: "100% 50%", ease: Back.easeOut }, 0.02);
+    })
+
+    $("#words").click(function () {
+      kill();
+      mySplitText.split({ type: "words" })
+      $(mySplitText.words).each(function (index, el) {
+        splitTextTimeline.from($(el), 0.6, { opacity: 0, force3D: true }, index * 0.01);
+        splitTextTimeline.from($(el), 0.6, { scale: index % 2 == 0 ? 0 : 2, ease: Back.easeOut }, index * 0.01);
+      });
+    })
+
+    $("#lines").click(function () {
+      kill();
+      mySplitText.split({ type: "lines" })
+      splitTextTimeline.staggerFrom(mySplitText.lines, 0.5, { opacity: 0, rotationX: -120, force3D: true, transformOrigin: "top center -150" }, 0.1);
+
+    })
+
+    $("#charsWordsLines").click(function () {
+      kill();
+      mySplitText.split({ type: "chars, words, lines" })
+      splitTextTimeline.staggerFrom(mySplitText.chars, 0.2, { autoAlpha: 0, scale: 4, force3D: true }, 0.01, 0.5)
+        .staggerTo(mySplitText.words, 0.1, { color: "#8FE402", scale: 0.9 }, 0.1, "words")
+        .staggerTo(mySplitText.words, 0.2, { color: "white", scale: 1 }, 0.1, "words+=0.1")
+        .staggerTo(mySplitText.lines, 0.5, { x: 100, autoAlpha: 0 }, 0.2)
+    })
+
+    //revert the text back to its pre-split state
+    $("#revert").click(function () {
+      mySplitText.revert();
+    })
+    window.addEventListener('load', function () {
+      kill();
+      mySplitText.split({ type: "chars, words" })
+      splitTextTimeline.staggerFrom(mySplitText.chars, 0.6, { scale: 4, autoAlpha: 0, rotationX: -180, transformOrigin: "100% 50%", ease: Back.easeOut }, 0.06);
+    })
+  </script>
+</body>
+
+</html>

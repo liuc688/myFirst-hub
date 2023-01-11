@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 定义字符串 str
+    var str = 'gighahigjankcniogaoigohoiagiiaioiuhgijoaihgioihdiahiqjqjgininhlmzllhgoiaihgioajiniohnihiohaioghk';
+    // 定义一个对象 o
+    var o = {};
+    // 遍历字符串 str
+    for (let i = 0; i < str.length; i++) {
+      // 让字符串中的某个字符赋值给 charts
+      let chars = str[i];
+      // 如果对象 o 中存在 charts 这个属性
+      if (o[chars]) {
+        /*
+        对象 o 中的 charts 这个属性对应的值是数值类型的，如果对象 o 中存在 charts 这个属性，当前属性值 +1；
+        如果对象 o 中不存在 charts 这个属性，当前属性值为 1；
+        */ 
+        o[chars]++;  
+      } else {
+        o[chars] = 1;
+      }
+    }
+    // 输出对象 o
+    console.log(o);
+
+    // 定义变量 max，它代表字符串某个字符的出现次数
+    var max = 0;
+    // 定义变量 temp，它代表字符串中出现次数最多的字符
+    var temp;
+    // 遍历对象 o
+    for (let k in o) {
+      
+      if (max < o[k]) {
+        /* 
+        变量 max 是一个数值类型的，如果 max 小于对象 o 中对应的 k 属性的属性值，那么就让 max 等于 o 中的 k 属性的属性值；
+        将 k（对象中的某个属性）赋值给 temp（出现次数最多的字符）
+        */
+        max = o[k];
+        temp = k;
+      } else {
+      }
+    }
+    console.log('出现次数最多的字符是' + temp + '出现的次数是' + max);
+  </script>
+</body>
+
+</html>

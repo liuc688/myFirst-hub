@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 函数柯里化，利用递归和闭包实现
+    const curry = function (fn) {
+      const len = fn.length;  // 获取初始函数 fn 的形参个数
+
+      // curry 返回改造后的函数
+      return function t() {
+        const innerLength = arguments.length;  // 获取 t 的实参个数
+        const args = Array.prototype.slice.call(arguments);  // 将类数组 arguments 对象转为真正的数组（类数组 arguments 对象是函数传入的实际参数，类似数组，拥有数组属性，但不是数组）
+        if (innerLength >= len) {  // 递归出口，如果 t 实参个数已经大于 fn 形参个数，则终止递归
+          return fn.apply(undefined, args)  // 执行改造后的函数
+        } else {  // 如果 t 的实参个数少于 fn 的形参个数，说明柯里化并没有完成，则继续执行柯里化
+          return function () {
+            const innerArgs = Array.prototype.slice.call(arguments);  // 将类数组 arguments 对象转为真正的数组（类数组 arguments 对象是函数传入的实际参数，类似数组，拥有数组属性，但不是数组）
+            const allArgs = args.concat(innerArgs);
+            return t.apply(undefined, allArgs)
+          }
+        }
+      }
+    }
+
+    // 测试
+    function add(num1, num2, num3, num4, num5) {
+      return num1 + num2 + num3 + num4 + num5;
+    }
+
+    const finalFun = curry(add);
+    const result1 = finalFun(1)(2)(3)(4)(5);
+    const result2 = finalFun(1, 2)(3)(4)(5);
+    const result3 = finalFun(1, 2, 3)(4)(5);
+    const result4 = finalFun(1, 2, 3)(4, 5);
+
+    console.log(result1, result2, result3, result4);  // 15 15 15 15
+  </script>
+</body>
+
+</html>

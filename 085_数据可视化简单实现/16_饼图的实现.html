@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1. 引入 echarts.js 文件 -->
+  <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+  <!-- 
+  1. 引入 echarts.js 文件
+  2. 准备一个呈现图表的盒子
+  3. 初始化 echarts 实例对象
+  4. 准备配置项
+  5. 将配置项设置给 echarts 实例对象
+  -->
+  <!-- 2. 准备一个呈现图表的盒子 -->
+  <div style="width:600px;height:400px"></div>
+
+  <script>
+    // 初始化一个 echarts 示例对象（3.初始化 echarts 实例对象）
+    var mCharts = echarts.init(document.querySelector('div'))
+    var pieData = [
+    {name:"淘宝",value:11231},
+    {name:"京东",value:22673},
+    {name:"唯品会",value:6123},
+    {name:"1号店",value:8989},
+    {name:"聚美优品",value:6700}
+    ]
+    // 4. 准备配置项
+    var option = {
+      series:[
+        {
+          type:'pie',
+          data:pieData,
+          label:{  // 饼图文字显示
+            show:true,  // 显示文字，不过默认的就是 true
+            // formatter:'hehe'  // 决定文字显示的内容
+            // 利用回调函数，动态的决定文字显示的内容
+            formatter:function(arg){
+              console.log(arg)
+              return arg.name + '平台 ' + arg.value +' 元\n' + arg.percent + '%'
+            }
+          },
+          // radius:20,  // 饼图的半径
+          // radius:'20%',  // 百分比参照的是宽度和高度中较小的那一部分的一半来进行百分比设置
+          // 圆环的设置，这里将 radius 设置为一个数组，其中数组的第一个元素为内园的半径，数组的第二个元素为外园的半径
+          radius:['50%','75%'],
+          // roseType:'radius',  // 南丁格尔图 饼图的每一个区域的半径是不同的，是会随着数值的变化而发生改变
+          // 选中效果
+          selectedMode:'single',  // 选中的效果，能够将选中的区域偏离圆点一小段距离
+          // selectedMode:'multiple',
+          // 偏离原点的距离（选中偏移量）
+          selectedOffset:30
+
+        }
+      ]
+    }
+    // 5. 将配置项设置给 echarts 实例对象
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

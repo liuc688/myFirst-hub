@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.创建一个新的 promise 对象
+    const p = new Promise((resolve,reject) =>{  // 执行器函数
+      // 2.执行异步操作任务
+      setTimeout(() => {
+        const time = Date.now()  // 如果当前时间是偶数就代表成功，如果是奇数就代表失败
+        // 3.1.如果成功了，调用 resolve(value)
+        if(time%2 == 0) {
+          resolve('成功的数据，time='+time)  // resolve 小括号里面的数据就是 then 函数调用时里面的 value 值
+        }else{
+          // 3.2.如果失败了，调用 reject(reason)
+          reject('失败的数据，time='+time)  // reject 小括号里面的数据就是 then 函数调用时里面的 reason 值
+        }
+      },1000)
+    })
+
+    p.then(
+      value => {  // 接收得到成功的 value 数据，这里的 value 就是 resolve 中的数据，then 中的第一个函数参数专业的称谓 onResolved
+        console.log('成功的回调',value);
+      },
+      reason => {  // 接收得到失败的 reason 数据，这里的 reason 就是 reject 中的数据，then 中的第二个函数参数专业的称谓 onRejected
+        console.log('失败的回调',reason);
+      }
+    )
+  </script>
+</body>
+</html>

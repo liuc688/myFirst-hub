@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1. 引入 echarts.js 文件 -->
+  <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+
+  <!-- 
+  1. 引入 echarts.js 文件
+  2. 准备一个呈现图表的盒子
+  3. 初始化 echarts 实例对象
+  4. 准备配置项
+  5. 将配置项设置给 echarts 实例对象
+  -->
+  <!-- 2. 准备一个呈现图表的盒子 -->
+  <div style="width:600px;height:400px"></div>
+
+  <script>
+    // 初始化一个 echarts 示例对象（3.初始化 echarts 实例对象）
+    var mCharts = echarts.init(document.querySelector('div'))
+    // 定义 x 轴的数据
+    var xDataArr = ['张三','李四','王五','闰土','小明','茅台','二妞','大强']
+    // 定义 y 轴的数据
+    var yDataArr = [88,92,63,77,94,80,72,86]
+    // 4. 准备配置项
+    var option = {
+      xAxis:{
+        type:'category',  // 类目轴
+        data:xDataArr
+      },
+      yAxis:{
+        type: 'value'  // 数值轴
+      },
+      // x 轴和 y 轴互换，表示横向坐标轴
+      // xAxis:{
+      //   type:'value',  // 数值轴
+      // },
+      // yAxis:{
+      //   type: 'category',  // 类目轴
+      //   data:xDataArr
+      // },
+      series:[
+        {
+          name:'语文',
+          type:'bar',  // 图表类型，bar 表示柱状图
+          // markPonit 用来标记最大值和最小值
+          markPoint:{
+            data:[
+              {
+                type:'max',name:'最大值'
+              },{
+                type:'min',name:'最小值'
+              }
+            ]
+          },
+          // markLine 用来标记平均值
+          markLine:{
+            data:[
+              {type:'average',name:'平均值'}
+            ]
+          },
+          // 数值显示
+          label:{
+            show:true,
+            // 数值旋转
+            rotate:60,
+            /*
+            position 表示数值显示的位置，默认 inside；表示在柱的内部，除此之外还有
+            top / left / right / bottom / inside / insideLeft / 
+            insideRight / insideTop / insideBottom / insideTopLeft / 
+            insideBottomLeft / insideTopRight / insideBottomRight。
+            */ 
+            position:'inside'
+          },
+          // 柱的宽度
+          barWidth:"30%",
+          data:yDataArr
+        }
+      ]
+    }
+    // 5. 将配置项设置给 echarts 实例对象
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

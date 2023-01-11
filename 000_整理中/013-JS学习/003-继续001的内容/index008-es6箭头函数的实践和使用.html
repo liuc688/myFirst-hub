@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #58a;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // let ad = document.querySelector('div');
+        // ad.addEventListener('click',function(){
+        //     // let _this = this;
+        //     // setTimeout(function(){
+        //     //     _this.style.background = 'pink';
+        //     // },2000)
+        //     setTimeout(()=>{
+        //         this.style.background = 'pink';
+        //     },2000)
+        // })
+
+
+        // 从数组中返回偶数的元素
+        const arr = [1,6,9,10,100,25];
+        // const result = arr.filter(function(item){
+        //     if(item%2==0){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // })
+        // console.log(result);
+        // 可以使用箭头函数加上简写的方式，就是下面这样
+        // const result = arr.filter(item => item%2 == 0);
+
+        const result = arr.filter(item=>item%2==0);
+        console.log(result);
+
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo15 径向渐变 圆circle / 椭圆ellipse</title>
+	<style>
+		.ceng{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			border: 1px solid black;
+			margin:10px;
+			float：left;
+		}
+		/*简单渐变、局部渐变   上下左右 具体px值 注意椭圆形的渐变第一组参数要X轴和Y轴参数同时存在*/
+		.circle{
+			background-image: radial-gradient(circle at center, orange,green);
+		}
+		.ellipse{
+			background-image: radial-gradient(ellipse at top left, orange,green);
+		}
+		.circle1{
+			background-image: radial-gradient(20px circle at center, orange,green);
+		}
+		.ellipse1{
+			background-image: radial-gradient(20px 30px ellipse at center, orange,green);
+		}
+		.circle2{
+			background-image: radial-gradient(20px circle at center, orange,yellow,pink);
+		}
+		.ellipse2{
+			background-image: radial-gradient(20px 30px ellipse at center, orange,yellow,pink);
+		}
+	</style>
+</head>
+<body>
+	<div class="ceng circle"></div>
+	<div class="ceng ellipse"></div>
+	<div class="ceng circle1"></div>
+	<div class="ceng ellipse1"></div>
+	<div class="ceng circle2"></div>
+	<div class="ceng ellipse2"></div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+.box {
+  /* 弹性布局 使页面元素水平+垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 使页面占屏幕总高 */
+  height: 100vh;
+}
+.left {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 50px;
+  margin-right: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.right {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 50px;
+  margin-left: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.box ul {
+  width: 1000px;
+  height: 320px;
+  /* 超出部分隐藏 */
+  overflow: hidden;
+  /* 过渡为0.3秒 */
+  transition: all .3s;
+}
+.box ul li {
+  /* 相对定位 */
+  position: relative;
+  float: left;
+  list-style-type: none;
+  width: 200px;
+  height: 320px;
+  /* 过渡为0.5秒 */
+  transition: all .5s;
+}
+.box ul li img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.box ul li i {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 5;
+}
+.box ul li:first-child i {
+  opacity: 0;
+}
+.box ul li:first-child img {
+  width: 50%;
+}
+
+.box ul li p {
+  /* 绝对定位 */
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 100%;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  /* 文字遮罩层 */
+  background-color: #fff;
+  transition: all .3s;
+}
+.box ul li {
+  width: 90px;
+}
+.box ul li:first-child {
+  width: 640px;
+}
+.box ul li:first-child p {
+  display: block;
+}
+

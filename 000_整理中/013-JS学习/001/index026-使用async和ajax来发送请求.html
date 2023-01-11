@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 发送一个ajax请求，返回的结果是一个Promise对象
+        function sendAJAX(url) {
+            return new Promise((resolve, reject) => {
+                const x = new XMLHttpRequest();
+                x.open('GET', url);
+                x.send();
+                // 4.事件绑定
+                x.onreadystatechange = function () {
+                    if (x.readyState === 4) {
+                        if (x.status >= 200 && x.status < 300) {
+                            resolve(x.response);
+
+                        } else {
+                            reject(x.status);
+                        }
+                    }
+                }
+            })
+        }
+
+        // Promise和then方法的测试
+        // const result = sendAJAX('https://api.apiopen.top/getJoke').then(value=>{
+        //     console.log(value); 
+        // },reason=>{})
+
+        // async和await测试
+        async function main() {
+         let result = await sendAJAX('https://api.apiopen.top/getJoke');
+         console.log(result);
+         
+        }
+        main();
+
+    </script>
+</body>
+
+</html>

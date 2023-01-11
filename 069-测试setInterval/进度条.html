@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入bootstrap css样式 -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.0-beta1/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin: 100px auto;
+    }
+    #progress { 
+      width: 100%; 
+      height: 30px; 
+      position: relative; 
+      background-color:#ddd; 
+      border-radius: 10px; 
+      overflow: hidden;
+    }
+    #progress-bar { 
+      background-color: #d9534f; 
+      width: 10px; 
+      height: 30px; 
+      line-height: 30px; 
+      position: absolute; 
+      text-align: center; 
+      color: white; 
+      background-image: 
+      linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent); 
+      background-size: 40px 40px; 
+    }
+    .button_group {
+      margin: 22px;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="progress"> 
+      <div id="progress-bar"></div> 
+    </div>
+    <div class="button_group">
+      <button class="btn btn-primary" style="margin-right: 12px;" onclick="start()">开始进度</button> 
+      <button class="btn btn-warning" onclick="stop()">结束进度</button>
+    </div>
+  </div>
+</body>
+<script>
+  var i = 0
+  var bar = document.querySelector("#progress-bar")
+  var t = null;
+  // 开始按钮
+  function start() { 
+    // 每一次开始的时候先清除定时器 t
+    clearInterval(t)
+    // 开启定时器 t
+    t = setInterval(progress, 60); 
+  }
+  // 结束按钮
+  function progress() { 
+    if (i < 100) { 
+      i++; 
+      bar.style.width = i + "%"; 
+      bar.innerHTML = i + " %"; 
+    } else { 
+      clearInterval(t); 
+    } 
+  }
+  function stop() { 
+    clearInterval(t);
+  }
+</script>
+</html>

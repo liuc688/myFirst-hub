@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            position: absolute;
+            left: 0;
+            top: 200px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: hotpink;
+        }
+    </style>
+    <script src="./animatesss.js"></script>
+</head>
+<body>
+    <button class="btn_500">点击按钮到500</button>
+    <button class="btn_800">点击按钮到800</button>
+    <span></span>
+
+    <script>
+        var btn_500 = document.querySelector('.btn_500');
+        var btn_800 = document.querySelector('.btn_800');
+        var span = document.querySelector('span');
+
+        btn_500.addEventListener('click',function() {
+            animate(span,500);
+        });
+        btn_800.addEventListener('click',function() {
+            animate(span,800);
+        });
+    </script>
+</body>
+</html>

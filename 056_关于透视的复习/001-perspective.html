@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      /* 
+          通常情况下,perspective是放在被观察者的父盒子上,perspective通常决定了z=0平面和查看器之间的距离,以便给3d定位元素以深度的感觉,
+          每个z>0的3d元素变得更大,而每个z<0的3d元素变得更小,(这里的z是translate3d的第三个参数,可以为正也可以为负)
+      */
+      perspective:500px;
+    }
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      /* 
+          translate3d会接收3个参数,分别是:tx,ty,tz,它所表示的意思是:沿着x轴,y轴,z轴移动的长度,可以是负数
+          如果是正数:
+            a.x轴方向向右移动
+            b.y轴方向向下移动
+            c.z轴方向向面前(垂直于屏幕)移动
+          如果是负数:
+            ....
+      */
+      transform: translate3d(400px,100px,-100px); 
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

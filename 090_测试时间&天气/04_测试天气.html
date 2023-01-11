@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wai {
+      width: 350px;
+      border: 1px red solid;
+      color: white;
+      float: left;
+      display: inline-block;
+      height: 20px;
+      overflow: hidden;
+      margin-top: 2px;
+      margin-left: 250px;
+    }
+
+    #text {
+      margin-left: 330px;
+      width: 360px;
+    }
+  </style>
+  <script src="./jquery.js"></script>
+</head>
+
+<body>
+  <span id="wai">
+    <p id="text">
+      早上好，您有0条公告信息未读，请您及时查看！！！
+    </p>
+  </span>
+</body>
+<script>
+  $(function () {
+    var initWidth = parseInt($("#text").css('margin-left'));
+    var stopWidth = "-" + $("#text").width();
+    var width = parseInt($("#text").css('margin-left'));
+    setInterval(function () {
+      if (width == parseInt(stopWidth)) {
+        width = initWidth;
+      }
+      width = width - 1;
+      $("#text").css("margin-left", width)
+    }, 30);
+  })
+</script>
+
+</html>

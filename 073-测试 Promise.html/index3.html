@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const p = new Promise((resolve,reject) => {
+      throw 3  // 抛出异常，promise 变为 rejected 失败状态，reason 为抛出的 3
+    })
+    p.then(  // 代码会执行
+      value => {},
+      reason => {console.log('reason',reason)}
+    )
+    p.then(  // 代码会执行
+      value => {},
+      reason => {console.log('reason',reason)}
+    )
+  </script>
+</body>
+</html>

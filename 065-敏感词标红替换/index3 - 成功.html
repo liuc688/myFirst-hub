@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div>习近平的讲话，充分体现了我们党不忘初心，牢记使命的原则</div> -->
+  <script>
+    var sign = ["习近平","不忘初心",'123'];  // 敏感词数组
+    var unsign = ["习近平同志","嘻嘻哈哈",'1234'];  // 非敏感词数组（白名单）
+    var arrList = [];  // 整合敏感词数组和白名单数组之后的数组 --> 敏感词数组（错误的敏感词数组）
+    /* 
+    现在有两个数组，分别是数组 A、数组 B，两个数组中存放的都是字符串类型，如果数组 B 中的字符串中某一项包含数组 A 的字符串（就是说
+    一个字符串中包含另外一个字符串，这种情况下，就要将数组 A 中的该字符串删除掉）,这种方式不好实现
+    我们也可以换一种思路去思考，数组 A、数组 B、数组 C（数组 C 是自己创建的初始值为空的新字符串）；
+    如果数组 B 中的所有字符串（就是对数组 B 遍历，如果包含数组 A 的某个字符串），我们就将数组 A 中的该字符串 push 进数组 C 中；
+    以至于最后生成一个新的数组 C（我们思考一下，这时候的数组 C 不是我们想要的，它包含的都是错误的敏感词（敏感词和白名单冲突了））
+    */
+    // for(let i = 0;i<sign.length;i++) {
+    //   if( unsign.some(item => { item.includes(sign[i])}) ) {
+    //     arrList.push(sign[i])
+    //   }
+    // }
+    // console.log('---',arrList)
+    sign.forEach(item => {
+      // console.log('----',item)
+      unsign.forEach(its => {
+        if(its.includes(item)) {
+          console.log('---',item)
+          arrList.push(item)
+        }
+      })
+    })
+    console.log("###",arrList)
+    sign = sign.filter(el => !arrList.includes(el))
+    console.log('$$$',sign)
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function sum(a) {
+      console.log('a的结果是',a); // a的结果是 1
+      return(b)=>{
+        console.log('b的结果是',b);  // b的结果是 2
+        return(c)=>{
+          console.log('c的结果是',c);  // c的结果是 3
+          return a+b+c;
+        }
+      }
+    }
+    const result1 = sum(1)(2)(3);
+    console.log(result1);  // 6
+  </script>
+</body>
+</html>

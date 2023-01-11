@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 参数：date, project, message
+    const log = (date, project, message) => {
+      return `${date} ${project} ${message}`
+    }
+
+    const logMsg = log('2022-07-29', 'xxx后台管理系统', 'mm接口异常');
+    console.log(logMsg) // 输出 2022-07-29 xxx后台管理系统 mm接口异常
+  </script>
+</body>
+
+</html>

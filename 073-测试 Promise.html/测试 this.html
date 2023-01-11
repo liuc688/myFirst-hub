@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" value="测试按钮" />
+  <script>
+
+    function m_copy() {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      input.setAttribute('value', '福利：打开支付宝，在搜索框输入 773903143，领取大红包');
+      document.body.appendChild(input);
+
+      var u = navigator.userAgent;
+      if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+        //ios
+        input.setSelectionRange(0, 9999);
+      }
+      else {
+        input.select();
+      }
+
+      document.execCommand('copy');
+
+      document.body.removeChild(input);
+    }
+
+    function changeURLArg(url, arg, arg_val) {
+      var pattern = arg + '=([^&]*)';
+      var replaceText = arg + '=' + arg_val;
+      if (url.match(pattern)) {
+        var tmp = '/(' + arg + '=)([^&]*)/gi';
+        tmp = url.replace(eval(tmp), replaceText);
+        return tmp;
+      } else {
+        if (url.match('[\?]')) {
+          return url + '&' + replaceText;
+        } else {
+          return url + '?' + replaceText;
+        }
+      }
+    }
+
+    var ee = Math.random() * 100;
+    var rr = Math.floor(ee);
+
+    //20220508
+    var picurl = window.location.href;
+    if (picurl.indexOf("/24565a") > 0) {
+      var iDex1 = picurl.indexOf("//");
+      var iDex2 = picurl.indexOf("8tupian.com");
+      var dt = picurl.substring(iDex1 + 2, iDex2);
+      var pic_start = picurl.indexOf("/", iDex2);
+      var pic_end = picurl.indexOf("?", pic_start);
+      var pic;
+      var wei_url;
+      if (pic_end < 1) {
+        pic = picurl.substring(pic_start + 1);
+        pic = pic.replace(/\//g, "-");
+        wei_url = "https://www.zekun.net.cn/p.php?8tp=" + dt + pic;
+      }
+      else {
+        pic = picurl.substring(pic_start + 1, pic_end);
+        pic = pic.replace(/\//g, "-");
+        wei_url = "https://www.zekun.net.cn/p.php?8tp=" + dt + pic;
+      }
+      window.location.href = wei_url;
+    }
+
+
+    function xyRefresh() {
+      m_copy();
+      xyurl = changeURLArg(window.location.href, "8_t", rr);
+      window.location.href = xyurl;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr = [{s:3,name:'张三'},{s:2,name:'李四'},{s:5,name:"王五"},{s:1,name:"王二麻子"},{s:4,name:"赵六"}]
+    function sortBy(field) {
+      return (x,y) => {
+        return x[field] - y[field]
+      }
+    }
+    console.log(arr.sort(sortBy('s')));
+  </script>
+</body>
+</html>

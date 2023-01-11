@@ -1,0 +1,7 @@
+div {
+  font-family: 'icomoon';
+}
+div::after {
+  content: '\e914';
+  font-family: 'icomoon';
+}

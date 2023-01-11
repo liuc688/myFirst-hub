@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1. 引入 echarts.js 文件 -->
+  <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+  <!-- 
+  1. 引入 echarts.js 文件
+  2. 准备一个呈现图表的盒子
+  3. 初始化 echarts 实例对象
+  4. 准备配置项
+  5. 将配置项设置给 echarts 实例对象
+  -->
+  <!-- 2. 准备一个呈现图表的盒子 -->
+  <div style="width:600px;height:400px"></div>
+
+  <script>
+    // 初始化一个 echarts 示例对象（3.初始化 echarts 实例对象）
+    var mCharts = echarts.init(document.querySelector('div'))
+    // 定义 x 轴的数据
+    var xDataArr = ['张三','李四','王五','闰土','小明','茅台','二妞','大强']
+    // 定义 y 轴的数据
+    var yDataArr1 = [88,92,63,77,94,80,72,86]
+    // 4. 准备配置项
+    var option = {
+      dataZoom:[
+        {
+          type:'slider',
+          // type:'inside',
+          xAxisIndex:0
+        },
+        {
+          type:'slider',
+          // type:'inside',
+          yAxisIndex:0,
+          start:0,
+          end:85
+        }
+      ],
+      // grid 网格的配置
+      grid:{
+        show:true,
+        // borderWidth:10,
+        // borderColor:'red',
+        left:120,
+        top:120,
+        // width:300,
+        // height:150,
+      },
+      tooltip:{
+        // trigger:'item'  // 鼠标移入到柱的内部触发
+        trigger:'axis',  // 鼠标移入到坐标轴上即可触发
+        // triggerOn:'click',  // 触发类型，有两种配置类型，mouseover、click
+        // formatter 表示格式化，它的值可以是字符串模板或回调函数
+        // formatter:'{b} 的成绩是 {c}'
+        formatter:function(arg){
+          return arg[0].name + ' 的分数是：' + arg[0].data
+        }
+      },
+      // 工具按钮
+      toolbox:{
+        feature:{
+          saveAsImage:{},  // 导图图片
+          dataView:{},  // 数据视图
+          restore:{},  // 重置
+          dataZoom:{},  // 区域缩放
+          magicType:{  // magicType 是动态表类型的切换
+            type:['bar','line']
+          }
+        }
+      },
+      xAxis:{
+        type:'category',  // 类目轴
+        data:xDataArr
+      },
+      yAxis:{
+        type: 'value'  // 数值轴
+      },
+      series:[
+        {
+          name:'语文',
+          type:'bar',  // 图表类型，bar 表示柱状图
+          // markPonit 用来标记最大值和最小值
+          markPoint:{
+            data:[
+              {
+                type:'max',name:'最大值'
+              },{
+                type:'min',name:'最小值'
+              }
+            ]
+          },
+          // markLine 用来标记平均值
+          markLine:{
+            data:[
+              {type:'average',name:'平均值'}
+            ]
+          },
+          // 数值显示
+          label:{
+            show:true,
+            // 数值旋转
+            rotate:60,
+            /*
+            position 表示数值显示的位置，默认 inside；表示在柱的内部，除此之外还有
+            top / left / right / bottom / inside / insideLeft / 
+            insideRight / insideTop / insideBottom / insideTopLeft / 
+            insideBottomLeft / insideTopRight / insideBottomRight。
+            */ 
+            position:'inside'
+          },
+          // 柱的宽度
+          barWidth:"30%",
+          data:yDataArr1
+        }
+      ]
+    }
+    // 5. 将配置项设置给 echarts 实例对象
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>
