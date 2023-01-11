@@ -35,7 +35,7 @@
       //创建天气查询实例
       var weather = new AMap.Weather();
       //执行实时天气信息查询
-      weather.getLive('杭州市', function (err, data) {
+      weather.getLive('聊城市', function (err, data) {
         console.log(err, data);
         for (const weatherKey in iconWeatherMap) {
           if(iconWeatherMap[weatherKey].includes(data.weather)) {
