@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.2/axios.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.js"></script>
+</head>
+<body>
+  <script>
+    
+    // 企业经纬度接口
+    var industryUrl = 'http://jiaming.vm68.suncoolnet.cn/api/company/address'
+    axios.post(industryUrl).then(function (res) {
+      console.log('**************',res);
+    })
+
+    // 企业营业额接口
+    // var addressYyyeeUrl='http://jiaming.vm68.suncoolnet.cn/api/company/yingyee/enterprise'
+    // // var addressYyyeeUrl='http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise'
+    // axios.post(addressYyyeeUrl,{id:"63bba8adb224678803d1e00c"}).then(function (res) {
+    //   console.log('------------',res);
+    // })
+    
+    // 企业营业额接口
+    // var addressYyyeeUrl='http://jiaming.vm68.suncoolnet.cn/api/manage/year/nashui'
+    // // var addressYyyeeUrl='http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise'
+    // axios.post(addressYyyeeUrl).then(function (res) {
+    //   console.log('------------',res);
+    // })
+    // manage/company/contrast
+    // 企业营业额接口
+    var addressYyyeeUrl='http://jiaming.vm68.suncoolnet.cn/api/manage/company/contrast'
+    // var addressYyyeeUrl='http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise'
+    axios.post(addressYyyeeUrl).then(function (res) {
+      console.log('------------',res);
+    })
+    // 营业额接口
+    // var addressYyyeeUrl='http://jiaming.vm68.suncoolnet.cn/api/manage/year/yingyee'
+    // // var addressYyyeeUrl='http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise'
+    // axios.post(addressYyyeeUrl).then(function (res) {
+    //   console.log('------------',res);
+    // })
+
+    //  
+
+    // 企业经营接口
+    // axios({
+    //   method: 'POST',
+    //   url: 'http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise',
+    //   data: {
+    //     id:"63bba8adb224678803d1e00c"
+    //   }
+    // }).then(function (res) {
+    //   console.log(res.data)
+    // })
+
+    // 企业经营接口
+    // 1. 创建 XHR 对象
+    // var xhr = new XMLHttpRequest()
+    // // 2. 调用 open 函数，指定 请求方式 与 URL地址
+    // xhr.open('POST', 'http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise?id="63bba8adb224678803d1e00c"')
+    // // 3. 调用 send 函数，发起 Ajax 请求
+    // xhr.send()
+    // // 4. 监听 onreadystatechange 事件
+    // xhr.onreadystatechange = function() {
+    //   // 4.1 监听 xhr 对象的请求状态 readyState ；与服务器响应的状态 status
+    //   if (xhr.readyState === 4 && xhr.status === 200) {
+    //     // 4.2 打印服务器响应回来的数据
+    //     console.log(xhr.responseText)
+    //   }
+    // }
+
+    // $.ajax({
+    //   method: 'POST',
+    //   url: 'http://gateway.vm68.suncoolnet.cn/company/yingyee/enterprise',
+
+    //   data: {
+    //     id: "63bba8adb224678803d1e00c",
+    //   },
+    //   success: function (res) {
+    //     console.log(res)
+    //   }
+    // })
+  </script>
+</body>
+</html>
