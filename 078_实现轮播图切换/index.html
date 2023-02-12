@@ -171,6 +171,8 @@
       var circle = 0;
       // 向右箭头点击效果
       fr.addEventListener("click", function () {
+        console.log("---",ul.children.length)
+        console.log("+++",ol.children.length)
         // 如果 num 的值等于了 ul 中 li 的个数 - 1，那么我们就回到最开始的时候（循环了一遍了）
         if (num == ul.children.length - 1) {
           ul.style.left = 0;
@@ -195,7 +197,7 @@
       // 向左箭头的点击效果
       fl.addEventListener("click", function () {
         if (num == 0) {
-          ul.style.left = '-900px';
+          ul.style.left = '-900px';  // 这里的 -900px 不是那么重要，只要在 -1280px 到 -640px 之间就可以了
           num = ul.children.length - 1;
         }
         num--;
